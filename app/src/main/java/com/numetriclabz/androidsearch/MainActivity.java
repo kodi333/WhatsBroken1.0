@@ -39,18 +39,16 @@ public class MainActivity extends AppCompatActivity {
     // this method is used to create list of items.
     public void createlist(){
 
-        list.add("Volkswagen Vento");
-        list.add("Hyundai Xcent");
-        list.add("Maruti Swift");
-        list.add("Hyundai i20");
-        list.add("Ford Fiesta Classic");
-        list.add("Chevrolet Beat");
-        list.add("Maruti Alto");
-        list.add("Toyota Etios");
-        list.add("Toyota Innova");
-        list.add("Mahindra Scorpio");
-        list.add("Maruti Wagon R");
-        list.add("Ford Figo");
+        list.add("Steam coming from under the hood");
+        list.add("Headlights not working");
+        list.add("Abs light on dashboard is on");
+        list.add("Keys sign on dashboard is on");
+        list.add("Airbag light on dashboard is on");
+        list.add("Car is not running straight");
+        list.add("Wipers don't work");
+        list.add("Clutch pedal falls to floor");
+        list.add("Air condition does not work");
+        list.add("Steering wheel vibrates");
 
     }
 
