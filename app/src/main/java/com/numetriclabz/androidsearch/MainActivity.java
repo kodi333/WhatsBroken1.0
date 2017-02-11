@@ -1,17 +1,23 @@
 package com.numetriclabz.androidsearch;
 
 import android.app.ActionBar;
+import android.app.Activity;
+import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v4.content.res.ResourcesCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.SearchView;
-import android.widget.TextView;
-import android.widget.Toast;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,12 +34,28 @@ public class MainActivity extends AppCompatActivity {
     private static List<String> listFixes = new ArrayList<String>();
     Adapter mAdapter;
 
+    private static Context mContext;
+
+ /*   public static Context getContext() {
+        return mContext;
+    }
+
+    public void setContext(Context mContext) {
+        this.mContext = mContext;
+    }*/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        /*MainActivity.mContext = getApplicationContext();*/
         setContentView(R.layout.activity_main);
 
-        search = (SearchView) findViewById(R.id.search);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+
+        /*search = (SearchView) findViewById(R.id.search);*/
+
+
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         createlist();  // in this method, Create a list of items.
         createlistFixes();
@@ -43,14 +65,35 @@ public class MainActivity extends AppCompatActivity {
         // call the adapter with argument list of items and context.
         mAdapter = new Adapter(list,this);
         mRecyclerView.setAdapter(mAdapter);
-        search.setOnQueryTextListener(listener); // call the QuerytextListner.
+/*        search.setOnQueryTextListener(listener); // call the QuerytextListner.
         search.setOnClickListener(new View.OnClickListener() { // whole field clickable
             @Override
             public void onClick(View v) {
                 search.setIconified(false);
                 search.setQueryHint("type to search");
             }
+        });*/
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+
+        final MenuItem searchItem = menu.findItem(R.id.search);
+        final SearchView searchView = new SearchView(this);
+        MenuItemCompat.setShowAsAction(searchItem, MenuItemCompat.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
+        MenuItemCompat.setActionView(searchItem, searchView);
+
+        searchView.setOnQueryTextListener(listener); // call the QuerytextListner.
+        searchView.setOnClickListener(new View.OnClickListener() { // whole field clickable
+            @Override
+            public void onClick(View v) {
+                searchView.setIconified(false);
+                searchView.setQueryHint("type to search");
+            }
         });
+        return true;
     }
 
     // this method is used to create list of items.
@@ -100,7 +143,8 @@ public class MainActivity extends AppCompatActivity {
             "Loss of power",
             "Engine managemnet light on",
             "Overheating",
-            "Flat tyre, spare - no jack"
+            "Flat tyre, spare - no jack",
+            "Electric car windows issue"
 
     };
 
@@ -167,6 +211,7 @@ public class MainActivity extends AppCompatActivity {
 
             "Keys sign on dashboard blinks: \n \n"+
                     "Bla, bla broken headlights pal!",
+            "",
             "",
             "",
             "",
