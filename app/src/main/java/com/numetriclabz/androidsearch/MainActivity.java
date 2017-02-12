@@ -20,11 +20,14 @@ import android.view.View;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import static android.content.ContentValues.TAG;
+import static com.numetriclabz.androidsearch.MainActivity.ITEMS;
 import static com.numetriclabz.androidsearch.R.styleable.View;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
     private List<String> list = new ArrayList<String>();
     private static List<String> listFixes = new ArrayList<String>();
     Adapter mAdapter;
-
     private static Context mContext;
 
  /*   public static Context getContext() {
@@ -99,14 +101,14 @@ public class MainActivity extends AppCompatActivity {
     // this method is used to create list of items.
     public void createlist(){
         for (int i = 0; i < ITEMS.size(); i++) {
-            list.add(ITEMS.get(i).content.toLowerCase());
+            list.add(ITEMS.get(i).content);
         }
 
     }
 
     public void createlistFixes(){
         for (int i = 0; i < ITEMS.size(); i++) {
-            listFixes.add(ITEMS.get(i).details.toLowerCase());
+            listFixes.add(ITEMS.get(i).details);
         }
 
     }
@@ -138,10 +140,10 @@ public class MainActivity extends AppCompatActivity {
             "Overheating",
             "Flat tire/blowout",
             "No start",
-            "engine turning over / not starting",
+            "Engine turning over but not starting",
             "Dead on key",
             "Loss of power",
-            "Engine managemnet light on",
+            "Engine management light on",
             "Overheating",
             "Flat tyre, spare - no jack",
             "Electric car windows issue"
@@ -228,11 +230,27 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+/*    class IgnoreCaseComparator implements Comparator<String> {
+        public int compare(String strA, String strB) {
+            return strA.compareToIgnoreCase(strB);
+        }
+    }*/
+
     private static void addItem(DummyItem item) {
         ITEMS.add(item);
         ITEM_MAP.put(item.id, item);
     }
 
+    static
+    {
+        Collections.sort(ITEMS, new Comparator<DummyItem>() {
+            @Override
+            public int compare(DummyItem item2, DummyItem item1)
+            {
+                return  item2.content.compareToIgnoreCase(item1.content);
+            }
+        });
+    }
 
 
     SearchView.OnQueryTextListener listener = new SearchView.OnQueryTextListener() {
@@ -281,4 +299,9 @@ public class MainActivity extends AppCompatActivity {
             return content;
         }
     }
+
+
 }
+
+
+
