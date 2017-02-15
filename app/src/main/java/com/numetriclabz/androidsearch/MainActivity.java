@@ -8,6 +8,7 @@ import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.view.menu.MenuView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -38,43 +39,22 @@ public class MainActivity extends AppCompatActivity {
     Adapter mAdapter;
     private static Context mContext;
 
- /*   public static Context getContext() {
-        return mContext;
-    }
-
-    public void setContext(Context mContext) {
-        this.mContext = mContext;
-    }*/
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /*MainActivity.mContext = getApplicationContext();*/
         setContentView(R.layout.activity_main);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-        /*search = (SearchView) findViewById(R.id.search);*/
-
-
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         createlist();  // in this method, Create a list of items.
         createlistFixes();
-        //mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager (this));
 
         // call the adapter with argument list of items and context.
         mAdapter = new Adapter(list,this);
         mRecyclerView.setAdapter(mAdapter);
-/*        search.setOnQueryTextListener(listener); // call the QuerytextListner.
-        search.setOnClickListener(new View.OnClickListener() { // whole field clickable
-            @Override
-            public void onClick(View v) {
-                search.setIconified(false);
-                search.setQueryHint("type to search");
-            }
-        });*/
     }
 
     @Override
@@ -82,10 +62,15 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
 
+        MenuInflater inflater2 = getMenuInflater();
+        inflater.inflate(R.menu.action, menu);
+
         final MenuItem searchItem = menu.findItem(R.id.search);
         final SearchView searchView = new SearchView(this);
         MenuItemCompat.setShowAsAction(searchItem, MenuItemCompat.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
         MenuItemCompat.setActionView(searchItem, searchView);
+
+        final MenuItem actionMenu = menu.findItem(R.id.actionMenu);
 
         searchView.setOnQueryTextListener(listener); // call the QuerytextListner.
         searchView.setOnClickListener(new View.OnClickListener() { // whole field clickable
@@ -160,7 +145,16 @@ public class MainActivity extends AppCompatActivity {
                     "Bla, bla broken headlights pal!",
 
             "Abs light on dashboard is on: \n \n"+
-                    "Bla, bla broken headlights pal!",
+                    "Check the emergency break:\n" +
+                    "Sometimes the emergency brake will not go down far enough and keep the light on, even though the brakes are actually not applied.\n" +
+                    "The emergency brake does not run on the same system as the main brake line, but if the E-brake is in working condition, it can still be applied in a situation where the main lines fail. It can also be applied as a preventative measure in areas with steep driving terrain. However, this light can get stuck on if the handle is notshut off properly.\n" +
+                    "Check your E-brake to be sure that it is in the proper down position. Adjust a few times and see if the light goes off.\n" +
+                    "Sometimes the emergency brake will not go down far enough and keep the light on, even though the brakes are actually not applied.\n" +
+                    "The emergency brake does not run on the same system as the main brake line, but if the E-brake is in working condition, it can still be applied in a situation where the main lines fail. It can also be applied as a preventative measure in areas with steep driving terrain. However, this light can get stuck on if the handle is notshut off properly.\n" +
+                    "Check your E-brake to be sure that it is in the proper down position. Adjust a few times and see if the light goes off.\n" +
+                    "\n"+
+            "Losing Hydraulic Pressure \n\n" +
+            "Check Your Hydraulic Circuits",
 
             "Keys sign on dashboard blinks: \n \n"+
                     "Bla, bla broken headlights pal!",
@@ -230,11 +224,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-/*    class IgnoreCaseComparator implements Comparator<String> {
-        public int compare(String strA, String strB) {
-            return strA.compareToIgnoreCase(strB);
-        }
-    }*/
 
     private static void addItem(DummyItem item) {
         ITEMS.add(item);

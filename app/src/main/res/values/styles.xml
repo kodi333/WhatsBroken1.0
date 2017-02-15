@@ -1,0 +1,55 @@
+<resources>
+
+    <!-- Base application theme. -->
+<!--    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        &lt;!&ndash; Customize your theme here. &ndash;&gt;
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>-->
+    <!--<style name="AppTheme2" parent="Theme.AppCompat">
+        &lt;!&ndash; Customize your theme here. &ndash;&gt;
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>-->
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:textColorPrimary">#f5f5f5</item>
+        <item name="android:fontFamily">"sans-serif"</item>
+        <item name="android:typeface">serif</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="logo">@drawable/tools32</item>
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+<!--    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="MyToolbarStyle" parent="ThemeOverlay.AppCompat.ActionBar">
+        &lt;!&ndash; Used to for the title of the Toolbar &ndash;&gt;
+        <item name="android:textColorPrimary">#fff</item>
+        &lt;!&ndash; Used to for the title of the Toolbar when parent is Theme.AppCompat.Light &ndash;&gt;
+        <item name="android:textColorPrimaryInverse">#fff</item>
+        &lt;!&ndash; Used to color the text of the action menu icons &ndash;&gt;
+        <item name="android:textColorSecondary">#fff</item>
+        &lt;!&ndash; Used to color the overflow menu icon &ndash;&gt;
+        <item name="actionMenuTextColor">#fff</item>
+        &lt;!&ndash; Color of the Toolbar &ndash;&gt;
+        <item name="android:background">#fff</item>
+    </style>-->
+
+</resources>
